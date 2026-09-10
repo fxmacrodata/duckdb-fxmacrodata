@@ -1,0 +1,53 @@
+# name: test/sql/fxmacrodata.test
+# description: FXMacroData table functions
+# group: [fxmacrodata]
+
+# The functions must not exist before the extension is loaded.
+statement error
+SELECT * FROM fxmacrodata_latest('USD');
+----
+Catalog Error
+
+require fxmacrodata
+
+# Every table function registers.
+query I
+SELECT count(*) FROM duckdb_functions() WHERE function_name LIKE 'fxmacrodata%';
+----
+3
+
+# Columns are typed, not all VARCHAR. This is the reason the extension exists
+# rather than telling people to use read_json_auto.
+query II
+SELECT column_name, column_type
+FROM (DESCRIBE SELECT * FROM fxmacrodata_latest('USD'))
+WHERE column_name IN ('val', 'announced_at')
+ORDER BY column_name;
+----
+announced_at	TIMESTAMP
+val	DOUBLE
+
+# USD is public, so this works with no API key configured.
+query I
+SELECT count(*) > 0 FROM fxmacrodata_latest('USD');
+----
+true
+
+# A currency code is accepted in any case.
+query I
+SELECT count(*) > 0 FROM fxmacrodata_calendar('usd');
+----
+true
+
+# Publication timestamps are present on the calendar, which is what makes the
+# data usable for scheduling rather than only for display.
+query I
+SELECT count(*) = 0 FROM fxmacrodata_calendar('USD') WHERE announced_at IS NULL;
+----
+true
+
+# An unknown indicator is an error from the API, not an empty success.
+statement error
+SELECT * FROM fxmacrodata_announcements('USD', 'not_a_real_indicator');
+----
+FXMacroData
