@@ -2,6 +2,7 @@
 name = "fxmacrodata"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.86"
 description = "Query official macroeconomic, FX and central-bank data from DuckDB"
 license = "MIT"
 repository = "https://github.com/fxmacrodata/duckdb-fxmacrodata"
