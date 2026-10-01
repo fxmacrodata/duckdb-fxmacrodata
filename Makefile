@@ -11,6 +11,10 @@ USE_UNSTABLE_C_API=1
 # Target DuckDB version
 TARGET_DUCKDB_VERSION=v1.5.5
 
+# The unstable C API ties the binary to one DuckDB release, so test against
+# that release rather than the latest one on PyPI
+DUCKDB_TEST_VERSION=1.5.5
+
 all: configure debug
 
 # Include makefiles from DuckDB

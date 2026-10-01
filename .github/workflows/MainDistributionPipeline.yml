@@ -21,4 +21,5 @@ jobs:
       ci_tools_version: v1.5-variegata
       extension_name: fxmacrodata
       extra_toolchains: rust;python3
-      exclude_archs: 'linux_amd64_musl'
+      # ureq/rustls needs sockets and ring, neither of which builds for wasm32-emscripten
+      exclude_archs: 'linux_amd64_musl;wasm_mvp;wasm_eh;wasm_threads'
