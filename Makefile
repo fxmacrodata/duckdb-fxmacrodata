@@ -9,11 +9,11 @@ EXTENSION_NAME=fxmacrodata
 USE_UNSTABLE_C_API=1
 
 # Target DuckDB version
-TARGET_DUCKDB_VERSION=v1.5.5
+TARGET_DUCKDB_VERSION=v1.5.6
 
 # The unstable C API ties the binary to one DuckDB release, so test against
 # that release rather than the latest one on PyPI
-DUCKDB_TEST_VERSION=1.5.5
+DUCKDB_TEST_VERSION=1.5.6
 
 all: configure debug
 

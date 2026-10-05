@@ -1,7 +1,7 @@
 # duckdb-fxmacrodata
 
-A DuckDB extension for querying [FXMacroData](https://fxmacrodata.com/?utm_source=github&utm_medium=referral&utm_campaign=duckdb-fxmacrodata&utm_content=readme) — official-source
-macroeconomic, FX and central-bank data across 18 currencies — as ordinary SQL tables.
+A DuckDB extension for querying [FXMacroData](https://fxmacrodata.com/?utm_source=github&utm_medium=referral&utm_campaign=duckdb-fxmacrodata&utm_content=readme), official-source
+macroeconomic, FX and central-bank data across 22 currencies, as ordinary SQL tables.
 
 ```sql
 LOAD fxmacrodata;
@@ -67,7 +67,7 @@ ORDER BY date DESC;
 
 ## Authentication
 
-USD data is public. For the other seventeen currencies and the full history window:
+USD data is public. For the other twenty-one currencies and the full history window:
 
 ```bash
 export FXMACRODATA_API_KEY=your-key   # FXMD_API_KEY is accepted as an alias
@@ -93,7 +93,7 @@ python extension-ci-tools/scripts/append_extension_metadata.py \
   -l target/release/fxmacrodata.dll -n fxmacrodata \
   -o fxmacrodata.duckdb_extension \
   -p "$(duckdb -c 'PRAGMA platform' -noheader -list)" \
-  -dv v1.5.5 -ev 0.1.0 --abi-type C_STRUCT_UNSTABLE
+  -dv v1.5.6 -ev 0.1.0 --abi-type C_STRUCT_UNSTABLE
 ```
 
 Then, with `allow_unsigned_extensions` enabled:
