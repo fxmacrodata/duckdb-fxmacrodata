@@ -1,6 +1,6 @@
 # duckdb-fxmacrodata
 
-A DuckDB extension for querying [FXMacroData](https://fxmacrodata.com) — official-source
+A DuckDB extension for querying [FXMacroData](https://fxmacrodata.com/?utm_source=github&utm_medium=referral&utm_campaign=duckdb-fxmacrodata&utm_content=readme) — official-source
 macroeconomic, FX and central-bank data across 18 currencies — as ordinary SQL tables.
 
 ```sql
